@@ -15,7 +15,7 @@ class SearchByNameApi(APIView):
         _type = request.GET.get('type','movie')
         year = request.GET.get('y',None)
         if name=='':
-            data = {'status':'movie title is required! koskesh'}
+            data = {'status':'movie title is required!'}
             return Response(data)
         else:
             api_url = "http://www.omdbapi.com/?s={0}&type={1}".format(name,_type)
@@ -36,7 +36,7 @@ class SearchByImdbIdApi(APIView):
         _type = request.GET.get('type','movie')
         year = request.GET.get('y',None)
         if name=='' and imdb_id=='':
-            data = {'status':'movie title or imdb id are required! koskesh'}
+            data = {'status':'movie title or imdb id are required!'}
             return Response(data)
         else:
             api_url = "http://www.omdbapi.com/?t={0}&i={1}&type={2}".format(name,imdb_id,_type)
@@ -150,3 +150,26 @@ class QrGenerator(APIView):
         resp = json.loads(response.content)
         return Response(resp)
 
+
+
+
+class Quote(APIView):
+
+    def get(self,request):
+        api_endpint = 'https://quotes.rest/qod'
+        response = requests.get(api_endpint,headers={'Accept': 'application/json'})
+        resp = json.loads(response.content)
+        return Response(resp)
+
+
+class Translate(APIView):
+
+    def get(self,request,input_text):
+        api_endpint = build_url('/api/v1/ip')
+        response = requests.get(api_endpint)
+        resp = json.loads(response.content)
+        lang = resp['languages'].split('-')[0]
+        api_endpint = 'https://translate.yandex.net/api/v1.5/tr/translate?key=trnsl.1.1.20191230T110453Z.78ddb41085f80c1f.90e0e213b95395fe17a5c22918de7f4e15adf17c&text={0}&lang=en-{1}'.format(input_text,lang)
+        response = requests.get(api_endpint,headers={'Accept': 'application/json'})
+        resp = json.loads(response.content)
+        return Response(resp)
