@@ -79,7 +79,7 @@ class InfoByIp(APIView):
         return Response(resp)
 
 def build_url(page):
-    return "http://127.0.0.1:8000" + page
+    return "http://37.152.190.196:8000" + page
 
 class ObtainAddress(APIView):
 
