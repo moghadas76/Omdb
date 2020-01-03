@@ -162,14 +162,14 @@ class Quote(APIView):
         return Response(resp)
 
 
-class Translate(APIView):
+# class Translate(APIView):
 
-    def get(self,request,input_text):
-        api_endpint = build_url('/api/v1/ip')
-        response = requests.get(api_endpint)
-        resp = json.loads(response.content)
-        lang = resp['languages'].split('-')[0]
-        api_endpint = 'https://translate.yandex.net/api/v1.5/tr/translate?key=trnsl.1.1.20191230T110453Z.78ddb41085f80c1f.90e0e213b95395fe17a5c22918de7f4e15adf17c&text={0}&lang=en-{1}'.format(input_text,lang)
-        response = requests.get(api_endpint,headers={'Accept': 'application/json'})
-        resp = json.loads(response.content)
-        return Response(resp)
+#     def get(self,request,input_text):
+#         api_endpint = build_url('/api/v1/ip')
+#         response = requests.get(api_endpint)
+#         resp = json.loads(response.content)
+#         lang = resp['languages'].split('-')[0]
+#         api_endpint = 'https://translate.yandex.net/api/v1.5/tr/translate?key=trnsl.1.1.20191230T110453Z.78ddb41085f80c1f.90e0e213b95395fe17a5c22918de7f4e15adf17c&text={0}&lang=en-{1}'.format(input_text,lang)
+#         response = requests.get(api_endpint,headers={'Accept': 'application/json'})
+#         resp = json.loads(response.content)
+#         return Response(resp)
