@@ -3,11 +3,11 @@ from api import views
 
 
 urlpatterns = [
-    path('search/',views.SearchByNameApi.as_view()),
-    path("movie_search/", views.SearchByImdbIdApi.as_view(), name="imdb"),
+    path('omdb/search',views.SearchByNameApi.as_view()),
+    path("omdb/movie", views.SearchByImdbIdApi.as_view(), name="imdb"),
     # path("recommand/", views.RecommandApi.as_view(), name="imdb"),
-    path("movie_tags/", views.GetTags.as_view(), name="tags"),
-    path("movie_search_tags/<int:g_id>/<int:page>/", views.SearchByTagApi.as_view(), name="find_tag"),
+    path("omdb/tags/", views.GetTags.as_view(), name="tags"),
+    path("omdb/search/<int:g_id>/<int:page>/", views.SearchByTagApi.as_view(), name="find_tag"),
     path("ip/", views.InfoByIp.as_view(), name="ip"),
     path("address/", views.ObtainAddress.as_view(), name="address"),
     # path("url_shorten/", views.UrlShorten.as_view(), name="short_url"),
